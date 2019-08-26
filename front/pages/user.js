@@ -63,6 +63,7 @@ User.prototype={
     id: PropTypes.number.isRequired,
 }
 
+// getInitialProps 서버사이드 렌더링의 핵심 -. 서버&&프론트 둘다 실행
 User.getInitialProps = async (context) => { // 파라미터로 ctx가 들어옴  // 2번으로 실행
     console.log('User getInitalProps', context.query.id); // ctx 안에 있는 tag 뽑아냄
     return{id:parseInt(context.query.id, 10)} // 리턴하면 _app.js pageProps에 담김
