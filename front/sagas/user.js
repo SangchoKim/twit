@@ -112,10 +112,10 @@ function logOutAPI() {
   }
   
   function loadUserAPI(userId) {
-    // 서버에 요청을 보내는 부분
+    // 서버에 요청을 보내는 부분 
     return axios.get(userId ? `/user/${userId}` : '/user/', {
-      withCredentials: true,
-    });
+      withCredentials: true, // 클라이언트에서 요청 보낼 때는 브라우저가 쿠키를 같이 동봉해줌
+    }); // 서버사이드렌더링일 때는, 브라우저가 없어요...
   }
   
   function* loadUser(action) {
@@ -195,9 +195,9 @@ function logOutAPI() {
   function* watchUnfollow() {
     yield takeLatest(UNFOLLOW_USER_REQUEST, unfollow);
   }
-  function loadFollowersAPI(userId) {
+  function loadFollowersAPI(userId, offset = 0, limit = 3) {
     // 서버에 요청을 보내는 부분
-    return axios.get(`/user/${userId}/followers`, {
+    return axios.get(`/user/${userId||0}/followers?offset=${offset}&limit=${limit}`, {
       withCredentials: true,
     });
   }
@@ -205,7 +205,7 @@ function logOutAPI() {
   function* loadFollowers(action) {
     try {
       // yield call(loadFollowersAPI);
-      const result = yield call(loadFollowersAPI, action.data);
+      const result = yield call(loadFollowersAPI, action.data, action.offset);
       yield put({ // put은 dispatch 동일
         type: LOAD_FOLLOWERS_SUCCESS,
         data: result.data,
@@ -223,9 +223,10 @@ function logOutAPI() {
     yield takeLatest(LOAD_FOLLOWERS_REQUEST, loadFollowers);
   }
   
-  function loadFollowingsAPI(userId) {
+  function loadFollowingsAPI(userId, offset = 0, limit = 3) {
     // 서버에 요청을 보내는 부분
-    return axios.get(`/user/${userId}/followings`, {
+    console.log("offset",offset);
+    return axios.get(`/user/${userId||0}/followings?offset=${offset}&limit=${limit}`, {
       withCredentials: true,
     });
   }
@@ -233,7 +234,7 @@ function logOutAPI() {
   function* loadFollowings(action) {
     try {
       // yield call(loadFollowersAPI);
-      const result = yield call(loadFollowingsAPI, action.data);
+      const result = yield call(loadFollowingsAPI, action.data, action.offset);
       yield put({ // put은 dispatch 동일
         type: LOAD_FOLLOWINGS_SUCCESS,
         data: result.data,

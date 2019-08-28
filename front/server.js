@@ -29,6 +29,10 @@ app.prepare().then(() => {
     },
   }));
 
+  server.get('/post/:id', (req, res) => {
+    return app.render(req, res, '/post', { id: req.params.id });
+  });
+
   server.get('/hashtag/:tag', (req, res) => { // user가 tag된 글자를 클릭하면 이쪽으로 데이터의 값이 들어옴
     return app.render(req, res, '/hashtag', { tag: req.params.tag }); // _app.js -> hashtag.js 페이지로 이동 with data
   });

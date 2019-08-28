@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, {useCallback } from 'react';
 import { Button, List, Card, Icon } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import NicknameEditForm from '../components/NicknameEditForm';
@@ -14,25 +14,8 @@ import PostCard from '../components/PostCard';
 const Profile = () => {
 
   const dispatch = useDispatch();
-  const { me, followingList, followerList } = useSelector(state => state.user);
+  const {followingList, followerList, hasMoreFollower, hasMoreFollowing } = useSelector(state => state.user);
   const { mainPosts } = useSelector(state => state.post);
-
-  useEffect(() => {
-    if (me) {
-      dispatch({
-        type: LOAD_FOLLOWERS_REQUEST,
-        data: me.id,
-      });
-      dispatch({
-        type: LOAD_FOLLOWINGS_REQUEST,
-        data: me.id,
-      });
-      dispatch({
-        type: LOAD_USER_POSTS_REQUEST,
-        data: me.id,
-      });
-    }
-  }, [me && me.id]);
 
   const onUnfollow = useCallback(userId => () => {
     dispatch({
@@ -48,6 +31,20 @@ const Profile = () => {
     });
   }, []);
 
+  const loadMoreFollowings = useCallback(() => {
+    dispatch({
+      type: LOAD_FOLLOWINGS_REQUEST,
+      offset: followingList.length,
+    });
+  }, [followingList.length]);
+
+  const loadMoreFollowers = useCallback(() => {
+    dispatch({
+      type: LOAD_FOLLOWERS_REQUEST,
+      offset: followerList.length,
+    });
+  }, [followerList.length]);
+
   return (
     <div>
       <NicknameEditForm />
@@ -56,7 +53,7 @@ const Profile = () => {
         grid={{ gutter: 4, xs: 2, md: 3 }}
         size="small"
         header={<div>팔로잉 목록</div>}
-        loadMore={<Button style={{ width: '100%' }}>더 보기</Button>}
+        loadMore={ hasMoreFollowing && <Button style={{ width: '100%' }} onClick={loadMoreFollowings}>더 보기</Button>}
         bordered
         dataSource={followingList}
         renderItem={item => (
@@ -71,7 +68,7 @@ const Profile = () => {
         grid={{ gutter: 4, xs: 2, md: 3 }}
         size="small"
         header={<div>팔로워 목록</div>}
-        loadMore={<Button style={{ width: '100%' }}>더 보기</Button>}
+        loadMore={ hasMoreFollower && <Button style={{ width: '100%' }} onClick={loadMoreFollowers}>더 보기</Button>}
         bordered
         dataSource={followerList}
         renderItem={item => (
@@ -88,6 +85,26 @@ const Profile = () => {
       </div>
     </div>
   );
+};
+
+Profile.getInitialProps = async (context) => {
+  const state = context.store.getState();
+  // 이 직전에 LOAD_USERS_REQUEST
+  // LOAD_USERS_REQUEST 가 끝나야 state.user.me가 생김
+  context.store.dispatch({
+    type: LOAD_FOLLOWERS_REQUEST,
+    data: state.user.me && state.user.me.id,
+  });
+  context.store.dispatch({
+    type: LOAD_FOLLOWINGS_REQUEST,
+    data: state.user.me && state.user.me.id,
+  });
+  context.store.dispatch({
+    type: LOAD_USER_POSTS_REQUEST,
+    data: state.user.me && state.user.me.id,
+  });
+
+  // 이 쯤에서 LOAD_USERS_SUCCESS 돼서 me가 생김.
 };
 
 export default Profile;

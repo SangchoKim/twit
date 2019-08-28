@@ -6,21 +6,11 @@ import { LOAD_USER_POSTS_REQUEST } from '../reducers/post';
 import { LOAD_USER_REQUEST } from '../reducers/user';
 import PostCard from '../components/PostCard';
 
-const User = ({id}) => { // _app.js에서  props로 내려온 값은 id로 받음 // 4번으로 실행
+const User = () => { // _app.js에서  props로 내려온 값은 id로 받음 // 4번으로 실행
   const dispatch = useDispatch();
   const { mainPosts } = useSelector(state => state.post);
   const { userInfo } = useSelector(state => state.user);
-  console.log("id",id);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_USER_REQUEST,
-      data: id,
-    });
-    dispatch({
-      type: LOAD_USER_POSTS_REQUEST,
-      data: id,
-    });
-  }, []);
+ 
   
   return (
     <div>
@@ -67,8 +57,17 @@ User.prototype={
 // 서버쪽에서 실행은 언제? 처음으로 페이지를 불러올때
 // 프론트쪽에서는 언제 실행? 넥스트 라우터로 페이지를 넘나들때 
 User.getInitialProps = async (context) => { // 파라미터로 ctx가 들어옴  // 2번으로 실행
-    console.log('User getInitalProps', context.query.id); // ctx 안에 있는 tag 뽑아냄
-    return{id:parseInt(context.query.id, 10)} // 리턴하면 _app.js pageProps에 담김
+    const id = parseInt(context.query.id, 10);  
+    console.log('User getInitalProps', id); // ctx 안에 있는 tag 뽑아냄
+    context.store.dispatch({
+      type: LOAD_USER_REQUEST,
+      data: id,
+    });
+    context.store.dispatch({
+      type: LOAD_USER_POSTS_REQUEST,
+      data: id,
+    });
+    return{id} // 리턴하면 _app.js pageProps에 담김
 };
 
 export default User;
