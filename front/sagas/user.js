@@ -51,7 +51,8 @@ function* login(action){
     } catch (error) { // loginAPI 실패
         console.log(error);
         yield put({
-            type: LOG_IN_FAILURE
+            type: LOG_IN_FAILURE,
+            reason: error.response.data && error.response.data,
         });
     }
 }

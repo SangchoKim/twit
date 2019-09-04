@@ -83,7 +83,7 @@ NodeBird.getInitialProps = async (context) => { // next 에서 내려주는 cont
   }
 
   if (Component.getInitialProps) { // Component안에 getInitialProps 있는 경우
-    pageProps = await Component.getInitialProps(ctx); // 각 componenet 안에서 리턴 받은 값을 pageProps에 넣음
+    pageProps = await Component.getInitialProps(ctx) || {}; // 각 componenet 안에서 리턴 받은 값을 pageProps에 넣음
   }
   return { pageProps }; // nodeBird props로 넘김 
 };

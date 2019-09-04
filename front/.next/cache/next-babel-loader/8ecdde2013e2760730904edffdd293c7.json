@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { combineReducers } from 'redux';\nimport user from './user';\nimport post from './post';\nconst rootReducer = combineReducers({\n  user,\n  post\n});\nexport default rootReducer;","map":null,"metadata":{},"sourceType":"module"}

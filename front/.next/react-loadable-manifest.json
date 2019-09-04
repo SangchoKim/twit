@@ -1,4 +1,12 @@
 {
+  "!!./dist.js": [
+    {
+      "id": "./node_modules/@ant-design/icons/lib/dist.js?3a9b",
+      "name": "./node_modules/@ant-design/icons/lib/dist.js",
+      "file": "static/chunks/antd-icons.js",
+      "publicPath": "static/chunks/antd-icons.js"
+    }
+  ],
   "./dev/noop": [
     {
       "id": "./node_modules/next/dist/client/dev/noop.js",

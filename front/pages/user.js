@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Card } from 'antd';
 import { LOAD_USER_POSTS_REQUEST } from '../reducers/post';
 import { LOAD_USER_REQUEST } from '../reducers/user';
-import PostCard from '../components/PostCard';
+import PostCard from '../containers/PostCard';
 
 const User = () => { // _app.js에서  props로 내려온 값은 id로 받음 // 4번으로 실행
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const User = () => { // _app.js에서  props로 내려온 값은 id로 받음 //
         )
         : null}
       {mainPosts.map(c => (
-        <PostCard key={+c.createdAt} post={c} />
+        <PostCard key={c.id} post={c} />
       ))}
     </div>
   );

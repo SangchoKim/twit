@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { all, call } from 'redux-saga/effects';\nimport user from './user';\nimport post from './post';\nimport axios from 'axios';\naxios.defaults.baseURL = 'http://localhost:2323/api';\nexport default function* rootSaga() {\n  yield all([call(user), call(post)]);\n}","map":null,"metadata":{},"sourceType":"module"}

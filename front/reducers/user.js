@@ -87,7 +87,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           isLoggingIn: false,
-          logInErrorReason: action.error,
+          logInErrorReason: action.reason,
           me: null,
         };
       }

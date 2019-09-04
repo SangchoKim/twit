@@ -2,7 +2,7 @@ import React, { useEffect,useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_HASHTAG_POSTS_REQUEST } from '../reducers/post';
-import PostCard from '../components/PostCard';
+import PostCard from '../containers/PostCard';
 
 const Hashtag = ({tag}) => {
 
@@ -16,7 +16,7 @@ const Hashtag = ({tag}) => {
     // 전체 화면 까지 스크롤이 도착하기 전 300 정도가 남았을 때 불러오기 
     if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
       if (hasMorePost) {
-        const lastId = mainPosts[mainPosts.length - 1].id; // 마지막 게시글의 id 추출
+        const lastId = mainPosts[mainPosts.length - 1].id && mainPosts[mainPosts.length - 1].id; // 마지막 게시글의 id 추출
         // if (!countRef.current.includes(lastId)) {
           dispatch({
             type: LOAD_HASHTAG_POSTS_REQUEST,
@@ -39,7 +39,7 @@ const Hashtag = ({tag}) => {
   return (
     <div>
       {mainPosts.map(c => (
-        <PostCard key={+c.createdAt} post={c} />
+        <PostCard key={c.id} post={c} />
       ))}
     </div>
   );

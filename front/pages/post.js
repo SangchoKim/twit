@@ -33,7 +33,7 @@ const Post = ({ id }) => {
       </div>  
     </>
   );
-};W
+};
 
 Post.getInitialProps = async (context) => {
   context.store.dispatch({
