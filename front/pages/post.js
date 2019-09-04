@@ -30,10 +30,10 @@ const Post = ({ id }) => {
       <div itemScope="author">{singlePost.User.nickname}</div>
       <div>
         {singlePost.Images[0] && <img src={`http://localhost:2323/${singlePost.Images[0].src}`} />}
-      </div>
+      </div>  
     </>
   );
-};
+};W
 
 Post.getInitialProps = async (context) => {
   context.store.dispatch({

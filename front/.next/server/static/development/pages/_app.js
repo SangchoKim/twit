@@ -157,11 +157,7 @@ const AppLayout = ({
   }, children), __jsx(antd__WEBPACK_IMPORTED_MODULE_3__["Col"], {
     xs: 24,
     md: 6
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "https://www.zerocho.com"
-  }, __jsx("a", {
-    target: "_blank"
-  }, "Made by ZeroCho")))));
+  })));
 };
 
 AppLayout.propTypes = {
@@ -371,6 +367,66 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/keys */ "core
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/promise.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/promise.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/promise */ "core-js/library/fn/promise");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _Promise = __webpack_require__(/*! ../core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    _Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new _Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
@@ -529,6 +585,18 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "./node_modules/next/app.js":
+/*!**********************************!*\
+  !*** ./node_modules/next/app.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./dist/pages/_app */ "./node_modules/next/dist/pages/_app.js")
+
 
 /***/ }),
 
@@ -1053,6 +1121,158 @@ function withRouter(ComposedComponent) {
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/pages/_app.js":
+/*!**********************************************!*\
+  !*** ./node_modules/next/dist/pages/_app.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.Container = Container;
+exports.createUrl = createUrl;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/extends */ "./node_modules/@babel/runtime-corejs2/helpers/extends.js"));
+
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "prop-types"));
+
+var _utils = __webpack_require__(/*! next-server/dist/lib/utils */ "next-server/dist/lib/utils");
+
+exports.AppInitialProps = _utils.AppInitialProps;
+
+var _router = __webpack_require__(/*! ../client/router */ "./node_modules/next/dist/client/router.js");
+/**
+* `App` component is used for initialize of pages. It allows for overwriting and full control of the `page` initialization.
+* This allows for keeping state between navigation, custom error handling, injecting additional data.
+*/
+
+
+function appGetInitialProps(_x) {
+  return _appGetInitialProps.apply(this, arguments);
+}
+
+function _appGetInitialProps() {
+  _appGetInitialProps = (0, _asyncToGenerator2.default)(function* (_ref) {
+    let {
+      Component,
+      ctx
+    } = _ref;
+    const pageProps = yield (0, _utils.loadGetInitialProps)(Component, ctx);
+    return {
+      pageProps
+    };
+  });
+  return _appGetInitialProps.apply(this, arguments);
+}
+
+class App extends _react.default.Component {
+  getChildContext() {
+    return {
+      router: (0, _router.makePublicRouterInstance)(this.props.router)
+    };
+  } // Kept here for backwards compatibility.
+  // When someone ended App they could call `super.componentDidCatch`.
+  // @deprecated This method is no longer needed. Errors are caught at the top level
+
+
+  componentDidCatch(error, _errorInfo) {
+    throw error;
+  }
+
+  render() {
+    const {
+      router,
+      Component,
+      pageProps
+    } = this.props;
+    const url = createUrl(router);
+    return _react.default.createElement(Component, (0, _extends2.default)({}, pageProps, {
+      url: url
+    }));
+  }
+
+} // @deprecated noop for now until removal
+
+
+exports.default = App;
+App.childContextTypes = {
+  router: _propTypes.default.object
+};
+App.origGetInitialProps = appGetInitialProps;
+App.getInitialProps = appGetInitialProps;
+
+function Container(p) {
+  return p.children;
+}
+
+const warnUrl = (0, _utils.execOnce)(() => {
+  if (true) {
+    console.error("Warning: the 'url' property is deprecated. https://err.sh/zeit/next.js/url-deprecated");
+  }
+});
+
+function createUrl(router) {
+  // This is to make sure we don't references the router object at call time
+  const {
+    pathname,
+    asPath,
+    query
+  } = router;
+  return {
+    get query() {
+      warnUrl();
+      return query;
+    },
+
+    get pathname() {
+      warnUrl();
+      return pathname;
+    },
+
+    get asPath() {
+      warnUrl();
+      return asPath;
+    },
+
+    back: () => {
+      warnUrl();
+      router.back();
+    },
+    push: (url, as) => {
+      warnUrl();
+      return router.push(url, as);
+    },
+    pushTo: (href, as) => {
+      warnUrl();
+      const pushRoute = as ? href : '';
+      const pushUrl = as || href;
+      return router.push(pushRoute, pushUrl);
+    },
+    replace: (url, as) => {
+      warnUrl();
+      return router.replace(url, as);
+    },
+    replaceTo: (href, as) => {
+      warnUrl();
+      const replaceRoute = as ? href : '';
+      const replaceUrl = as || href;
+      return router.replace(replaceRoute, replaceUrl);
+    }
+  };
+}
+
+/***/ }),
+
 /***/ "./node_modules/next/link.js":
 /*!***********************************!*\
   !*** ./node_modules/next/link.js ***!
@@ -1088,14 +1308,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux-saga */ "redux-saga");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/AppLayout */ "./components/AppLayout.js");
-/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../reducers */ "./reducers/index.js");
-/* harmony import */ var _sagas__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../sagas */ "./sagas/index.js");
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../reducers/user */ "./reducers/user.js");
+/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-helmet */ "react-helmet");
+/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_helmet__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux-saga */ "redux-saga");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/AppLayout */ "./components/AppLayout.js");
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../reducers */ "./reducers/index.js");
+/* harmony import */ var _sagas__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../sagas */ "./sagas/index.js");
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../reducers/user */ "./reducers/user.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -1113,27 +1337,56 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+
 const NodeBird = ({
   Component,
   store,
   pageProps
 }) => {
   // 3번으로 실행
-  return __jsx(react_redux__WEBPACK_IMPORTED_MODULE_6__["Provider"], {
+  return __jsx(next_app__WEBPACK_IMPORTED_MODULE_8__["Container"], null, __jsx(react_redux__WEBPACK_IMPORTED_MODULE_6__["Provider"], {
     store: store
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, __jsx("title", null, "NodeBird"), __jsx("link", {
-    rel: "stylesheet",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.2/antd.css"
-  }), __jsx("link", {
-    rel: "stylesheet",
-    type: "text/css",
-    charset: "UTF-8",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-  }), __jsx("link", {
-    rel: "stylesheet",
-    type: "text/css",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-  })), __jsx(_components_AppLayout__WEBPACK_IMPORTED_MODULE_9__["default"], null, __jsx(Component, pageProps)));
+  }, __jsx(react_helmet__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    title: "NodeBird",
+    htmlAttributes: {
+      lang: 'ko'
+    },
+    meta: [{
+      charset: 'UTF-8'
+    }, {
+      name: 'viewport',
+      content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes,viewport-fit=cover'
+    }, {
+      'http-equiv': 'X-UA-Compatible',
+      content: 'IE=edge'
+    }, {
+      name: 'description',
+      content: 'Santos의 NodeBird SNS'
+    }, {
+      name: 'og:title',
+      content: 'NodeBird'
+    }, {
+      name: 'og:description',
+      content: '제로초의 NodeBird SNS'
+    }, {
+      property: 'og:type',
+      content: 'website'
+    }],
+    link: [{
+      rel: 'shortcut icon',
+      href: '/favicon.ico'
+    }, {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.2/antd.css'
+    }, {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css'
+    }, {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
+    }]
+  }), __jsx(_components_AppLayout__WEBPACK_IMPORTED_MODULE_11__["default"], null, __jsx(Component, pageProps))));
 };
 
 NodeBird.propTypes = {
@@ -1157,15 +1410,15 @@ NodeBird.getInitialProps = async context => {
 
   const cookie = ctx.isServer ? ctx.req.headers.cookie : ''; // ctx 안에 리덕스의 req도  들어 있어 cookie 빼올 수 있음 
 
-  axios__WEBPACK_IMPORTED_MODULE_8___default.a.defaults.headers.Cookie = '';
+  axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = '';
 
   if (ctx.isServer && cookie) {
-    axios__WEBPACK_IMPORTED_MODULE_8___default.a.defaults.headers.Cookie = cookie;
+    axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = cookie;
   }
 
   if (!state.user.me) {
     ctx.store.dispatch({
-      type: _reducers_user__WEBPACK_IMPORTED_MODULE_12__["LOAD_USER_REQUEST"] // SSR AppLayout 유저 정보 가져오기
+      type: _reducers_user__WEBPACK_IMPORTED_MODULE_14__["LOAD_USER_REQUEST"] // SSR AppLayout 유저 정보 가져오기
 
     });
   }
@@ -1181,11 +1434,11 @@ NodeBird.getInitialProps = async context => {
 };
 
 const configureStore = (initialState, options) => {
-  const sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_7___default()();
+  const sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_9___default()();
   const middlewares = [sagaMiddleware];
   const enhancer =  false ? undefined : Object(redux__WEBPACK_IMPORTED_MODULE_5__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_5__["applyMiddleware"])(...middlewares), !options.isServer && typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f);
-  const store = Object(redux__WEBPACK_IMPORTED_MODULE_5__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_10__["default"], initialState, enhancer);
-  store.sagaTask = sagaMiddleware.run(_sagas__WEBPACK_IMPORTED_MODULE_11__["default"]); // 추가 필요 SSR 할때 
+  const store = Object(redux__WEBPACK_IMPORTED_MODULE_5__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_12__["default"], initialState, enhancer);
+  store.sagaTask = sagaMiddleware.run(_sagas__WEBPACK_IMPORTED_MODULE_13__["default"]); // 추가 필요 SSR 할때 
 
   return store;
 };
@@ -2857,6 +3110,17 @@ module.exports = require("core-js/library/fn/object/keys");
 
 /***/ }),
 
+/***/ "core-js/library/fn/promise":
+/*!*********************************************!*\
+  !*** external "core-js/library/fn/promise" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/promise");
+
+/***/ }),
+
 /***/ "immer":
 /*!************************!*\
   !*** external "immer" ***!
@@ -2986,6 +3250,17 @@ module.exports = require("prop-types-exact");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-helmet":
+/*!*******************************!*\
+  !*** external "react-helmet" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-helmet");
 
 /***/ }),
 
