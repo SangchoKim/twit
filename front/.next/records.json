@@ -1,0 +1,39 @@
+{
+  "modules": {
+    "byIdentifier": {},
+    "usedIds": {}
+  },
+  "chunks": {
+    "byName": {
+      "commons": 0,
+      "static/runtime/webpack.js": 1,
+      "antd-icons": 2,
+      "static/runtime/main.js": 3,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\_app.js": 4,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\_error.js": 5,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\hashtag.js": 6,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\index.js": 7,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\post.js": 8,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\profile.js": 9,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\signup.js": 10,
+      "static\\BumGV6J3BMevsn5Tu5gnQ\\pages\\user.js": 11
+    },
+    "bySource": {
+      "0 node_modules/webpack-ant-icon-loader/src/loader.js!node_modules/@ant-design/icons/lib/dist.js !!./dist.js": 2
+    },
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}

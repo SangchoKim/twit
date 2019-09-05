@@ -1,18 +1,10 @@
 {
   "!!./dist.js": [
     {
-      "id": "./node_modules/@ant-design/icons/lib/dist.js?3a9b",
+      "id": "Optq",
       "name": "./node_modules/@ant-design/icons/lib/dist.js",
-      "file": "static/chunks/antd-icons.js",
-      "publicPath": "static/chunks/antd-icons.js"
-    }
-  ],
-  "./dev/noop": [
-    {
-      "id": "./node_modules/next/dist/client/dev/noop.js",
-      "name": "./node_modules/next/dist/client/dev/noop.js",
-      "file": "static/chunks/0.js",
-      "publicPath": "static/chunks/0.js"
+      "file": "static/chunks/antd-icons.544e5833108e143aba68.js",
+      "publicPath": "static/chunks/antd-icons.544e5833108e143aba68.js"
     }
   ]
 }
