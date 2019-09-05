@@ -45,7 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-    res.send('react nodebird 백엔드 정상 동작!');
+    res.send('react nodebird 백엔드 정상 동작좀 해주세요!');
   });
 
 // API는 다른 서비스가 내 서비스의 기능을 실행할 수 있게 열어둔 창구 
