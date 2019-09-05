@@ -54,7 +54,7 @@ app.use('/api/post', postAPIRouter);
 app.use('/api/posts', postsAPIRouter);
 app.use('/api/hashtag', hashtagAPIRouter);
 
-app.listen(prod ? process.env.PORT : 3065, () => {
+app.listen(prod ? process.env.PORT : 2323, () => {
     console.log(`server is running on ${process.env.PORT}`);
 });
 
