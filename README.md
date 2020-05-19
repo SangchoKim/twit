@@ -2,7 +2,7 @@
 
 > 개인 프로젝트
 
-> 커플들의 추억을 담는 웹사이트 – 비트윈 벤치마킹s
+> 커플들의 추억을 담는 웹사이트 – 비트윈 벤치마킹ss
 
 ![Tech%2Fframework%20used-React-red](https://img.shields.io/badge/Tech%2Fframework%20used-React-red.svg)
 ![Tech%2Fframework%20used-NodeJs-yellow](https://img.shields.io/badge/Tech%2Fframework%20used-NodeJs-yellow.svg)
